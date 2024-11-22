@@ -3,9 +3,10 @@ import { OrderItem } from "../../lib/types";
 
 type ItemRowProps = {
   orderItem: OrderItem;
+  onItemUpdate: (orderItem: OrderItem) => void;
 }
 
-const ItemRow: React.FC<ItemRowProps> = ({ orderItem }) => {
+const ItemRow: React.FC<ItemRowProps> = ({ orderItem, onItemUpdate }) => {
   const itemPriceInDollars = orderItem.item.price_in_cents / 100;
 
   return (
@@ -30,11 +31,17 @@ const ItemRow: React.FC<ItemRowProps> = ({ orderItem }) => {
         </div>
 
         <div className="flex items-center space-x-3 mt-2">
-          <button className="font-medium text-black h-6 w-6 flex items-center justify-center bg-zinc-200 rounded transition-all duration-200 hover:bg-zinc-800 hover:text-white">
+          <button 
+            className="font-medium text-black h-6 w-6 flex items-center justify-center bg-zinc-200 rounded transition-all duration-200 hover:bg-zinc-800 hover:text-white"
+            onClick={() => onItemUpdate({ ...orderItem, quantity: orderItem.quantity - 1 })}
+          >
             -
           </button>
           <span className="text-sm">{orderItem.quantity}</span>
-          <button className="font-medium text-black h-6 w-6 flex items-center justify-center bg-zinc-200 rounded transition-all duration-200 hover:bg-zinc-800 hover:text-white">
+          <button
+            className="font-medium text-black h-6 w-6 flex items-center justify-center bg-zinc-200 rounded transition-all duration-200 hover:bg-zinc-800 hover:text-white"
+            onClick={() => onItemUpdate({ ...orderItem, quantity: orderItem.quantity + 1 })}
+          >
             +
           </button>
         </div>
