@@ -65,10 +65,6 @@ The usual steps for setting up a Rails project:
 ```sh
 $ bin/rails db:create
 $ bin/rails db:migrate
-$ bin/rails db:migrate
-
-# To get some data seeded
-
 $ bin/rails db:seed
 ```
 
