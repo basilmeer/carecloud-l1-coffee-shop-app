@@ -29,6 +29,14 @@ decided to take the liberty to use Tailwind.
 My sole focus in the past 48 hours has been to make the application functional and testable. As such, I have opted
 to not make the design mobile-responsive.
 
+## Oversights
+
+### No 'Remove From Cart' Button
+
+I had planned to add one near the end of the project however I glossed over it in pursuit of making the rest look
+and behave functional.
+
+
 ## Getting Started
 
 Since the project was bootstrapped with Create React App, all you would really need to do is:

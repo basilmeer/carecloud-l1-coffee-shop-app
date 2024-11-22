@@ -5,6 +5,8 @@ structure of the application as well as what I've inferred from the document and
 With `asdf` being my version manager of choice, the Ruby version has been locked locally using
 `.tool-versions` as well besides `.ruby-version`.
 
+---
+
 ## Tech Stack
 
 - Ruby 3.1.2
@@ -47,10 +49,14 @@ Since the point of the project is to create the structure and show that it works
 APIs unprotected without any form of authentication, based on the task description, it is not mentioned. As
 it is not mentioned, I have concluded that it is not required.
 
+## Oversights
+
 ### No Quantity in DealItem
 
 I came to the realization a bit too late that there is no quantity present for `DealItem`, as such at the moment
 there is no way to store and show how much of something is present in a `Deal`.
+
+---
 
 ## Getting Started
 
