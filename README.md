@@ -280,3 +280,9 @@ And in response, you are going to get:
 { "message": "Order saved successfully" }
 ```
 
+## Postman Collection
+
+A Postman collection has been included with the name `CareCloud L1 Rails App.postman_collection.json` that covers the APIs
+created and used by the React frontend (excluding the `List Orders` endpoint which was explicitly created to just check the
+created data).
+
