@@ -29,6 +29,11 @@ decided to take the liberty to use Tailwind.
 My sole focus in the past 48 hours has been to make the application functional and testable. As such, I have opted
 to not make the design mobile-responsive.
 
+### Order Submission Timeout
+
+I've commented in the code as well but I've intentionally added a timeout for demoing purposes when the order is submitted.
+The sole reasoning is to showcase the form being appropriately disabled whilst the submission is in progress.
+
 ## Oversights
 
 ### No 'Remove From Cart' Button
