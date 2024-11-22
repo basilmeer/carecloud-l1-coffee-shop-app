@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { apiRequest } from "../../lib/fetch";
-import { Item, OrderItem } from "../../lib/types";
+import { Deal, Item, OrderItem } from "../../lib/types";
 import ProductCard from "./Card";
 
 type ProductsProps = {
@@ -9,8 +9,10 @@ type ProductsProps = {
 
 const Products: React.FC<ProductsProps> = ({ onItemSelect }) => {
   const [items, setItems] = useState<Item[] | null>(null);
+  const [deals, setDeals] = useState<Deal[] | null>(null);
 
   useEffect(() => {
+    // Fetch Items
     const fetchItems = async () => {
       try {
         const items = await apiRequest<Item[]>('/items');
@@ -20,13 +22,27 @@ const Products: React.FC<ProductsProps> = ({ onItemSelect }) => {
       }
     }
 
+    // Fetch Deals
+    const fetchDeals = async () => {
+      try {
+        const deals = await apiRequest<Deal[]>('/deals');
+        setDeals(deals);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
     fetchItems();
+    fetchDeals();
   }, []);
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-start">
+      {deals && deals.map((deal, index) => (
+        <ProductCard key={index} product={deal} onItemSelect={onItemSelect} />
+      ))}
       {items && items.map((item, index) => (
-        <ProductCard key={index} item={item} onItemSelect={onItemSelect} />
+        <ProductCard key={index} product={item} onItemSelect={onItemSelect} />
       ))}
     </div>
   );

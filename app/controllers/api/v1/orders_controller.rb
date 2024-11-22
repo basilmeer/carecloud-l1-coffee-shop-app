@@ -1,4 +1,8 @@
 class Api::V1::OrdersController < ActionController::API
+  def index
+    render json: Jbuilder.new { |json| json.array! Order.all.order(id: :desc), :id, :uuid, :orderables }.target!
+  end
+
   def create
     order = Order.new(permitted_params)
 

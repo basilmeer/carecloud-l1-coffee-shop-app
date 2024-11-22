@@ -42,7 +42,7 @@ function App() {
             customer_name: customerName,
             order_items_attributes: queuedItems.map(orderItem => ({
               orderable_id: orderItem.item.id,
-              orderable_type: "Item", // hard coding for now, to be swapped for Deal later
+              orderable_type: "items" in orderItem.item ? "Deal" : "Item",
               quantity: orderItem.quantity,
             }))
           })
@@ -76,7 +76,7 @@ function App() {
           <div className="col-start-10 col-span-3 relative">
             <div className="border-l h-[95dvh] px-4 pt-6 pb-10 fixed top-16 w-[24.8%] flex flex-col">
               <h1 className="text-3xl font-medium mb-8">Order</h1>
-              <OrderSidebar orderItems={queuedItems} onItemUpdate={onItemSelect} />
+              <OrderSidebar orderItems={queuedItems} />
 
               <hr className="my-6" />
 

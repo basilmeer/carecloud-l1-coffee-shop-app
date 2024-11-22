@@ -1,12 +1,11 @@
 import React from "react";
-import { OrderItem } from "../../lib/types";
+import { OrderItem, Deal } from "../../lib/types";
 
 type ItemRowProps = {
   orderItem: OrderItem;
-  onItemUpdate: (orderItem: OrderItem) => void;
 }
 
-const ItemRow: React.FC<ItemRowProps> = ({ orderItem, onItemUpdate }) => {
+const ItemRow: React.FC<ItemRowProps> = ({ orderItem }) => {
   const itemPriceInDollars = orderItem.item.price_in_cents / 100;
 
   return (
@@ -15,11 +14,24 @@ const ItemRow: React.FC<ItemRowProps> = ({ orderItem, onItemUpdate }) => {
         <div className="flex justify-between">
           <h5 className="text-lg font-medium">
             {orderItem.item.name}
+            <span className="text-sm ml-2"> x {orderItem.quantity}</span>
           </h5>
           <h5 className="text-lg font-semibold">
             ${(itemPriceInDollars * orderItem.quantity).toFixed(2)}
           </h5>
         </div>
+
+        {'items' in orderItem.item && !!orderItem.item.items.length ?
+            <div className="mb-2">
+              {
+                orderItem.item.items.map(dealItem =>
+                  <p className="text-zinc-700 text-sm">{dealItem.name} x 1</p>
+                )
+              }
+            </div>
+        :
+          <></>
+        }
 
         <div className="flex flex-col">
           {orderItem.item.taxes.map((tax, index) =>
@@ -30,26 +42,10 @@ const ItemRow: React.FC<ItemRowProps> = ({ orderItem, onItemUpdate }) => {
           )}
         </div>
 
-        <div className="flex items-center space-x-3 mt-2">
-          <button 
-            className="font-medium text-black h-6 w-6 flex items-center justify-center bg-zinc-200 rounded transition-all duration-200 hover:bg-zinc-800 hover:text-white"
-            onClick={() => onItemUpdate({ ...orderItem, quantity: orderItem.quantity - 1 })}
-          >
-            -
-          </button>
-          <span className="text-sm">{orderItem.quantity}</span>
-          <button
-            className="font-medium text-black h-6 w-6 flex items-center justify-center bg-zinc-200 rounded transition-all duration-200 hover:bg-zinc-800 hover:text-white"
-            onClick={() => onItemUpdate({ ...orderItem, quantity: orderItem.quantity + 1 })}
-          >
-            +
-          </button>
-        </div>
       </div>
     </div>
   );
 }
 
 export default ItemRow;
-
 

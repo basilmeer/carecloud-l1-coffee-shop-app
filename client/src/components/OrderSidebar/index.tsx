@@ -5,10 +5,9 @@ import ItemRow from "./ItemRow";
 
 type OrderSidebarProps = {
   orderItems: OrderItem[] | [];
-  onItemUpdate: (orderItem: OrderItem) => void;
 }
 
-const OrderSidebar: React.FC<OrderSidebarProps> = ({ orderItems, onItemUpdate }) => {
+const OrderSidebar: React.FC<OrderSidebarProps> = ({ orderItems }) => {
   return (
     <div className="flex flex-col z-5 h-[inherit]">
       <div className="max-h-[900px]">
@@ -19,7 +18,7 @@ const OrderSidebar: React.FC<OrderSidebarProps> = ({ orderItems, onItemUpdate })
               {
                 orderItems.map((orderItem, index) => (
                   <React.Fragment key={index}>
-                    <ItemRow key={index} orderItem={orderItem} onItemUpdate={onItemUpdate} />
+                    <ItemRow key={index} orderItem={orderItem} />
                     <hr className="my-6" />
                   </React.Fragment>
                 ))

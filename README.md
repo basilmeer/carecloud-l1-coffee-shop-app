@@ -47,6 +47,11 @@ Since the point of the project is to create the structure and show that it works
 APIs unprotected without any form of authentication, based on the task description, it is not mentioned. As
 it is not mentioned, I have concluded that it is not required.
 
+### No Quantity in DealItem
+
+I came to the realization a bit too late that there is no quantity present for `DealItem`, as such at the moment
+there is no way to store and show how much of something is present in a `Deal`.
+
 ## Getting Started
 
 The usual steps for setting up a Rails project:
@@ -130,6 +135,121 @@ I have included the Postman collection as well, but here are some example respon
 
 
 ### GET /deals
+
+```
+{
+    "id": 3,
+    "name": "BIG Meal",
+    "discount_rate": 28.39290584737374,
+    "items": [
+        {
+            "id": 3,
+            "name": "Good-morning Delight",
+            "price_in_cents": 1078.0,
+            "discount_rate": 18.742727864980626,
+            "created_at": "2024-11-21T21:18:38.992Z",
+            "updated_at": "2024-11-21T21:18:38.992Z",
+            "quantity": 12
+        },
+        {
+            "id": 6,
+            "name": "Veranda Mug",
+            "price_in_cents": 2214.0,
+            "discount_rate": 4.366468171649656,
+            "created_at": "2024-11-21T21:18:39.074Z",
+            "updated_at": "2024-11-21T21:18:39.074Z",
+            "quantity": 11
+        },
+        {
+            "id": 7,
+            "name": "Goodbye Extract",
+            "price_in_cents": 437.0,
+            "discount_rate": 6.4407395959665426,
+            "created_at": "2024-11-21T21:18:39.118Z",
+            "updated_at": "2024-11-21T21:18:39.118Z",
+            "quantity": 8
+        },
+        {
+            "id": 13,
+            "name": "Strong Blend",
+            "price_in_cents": 1899.0,
+            "discount_rate": 28.336538210958963,
+            "created_at": "2024-11-21T21:18:39.310Z",
+            "updated_at": "2024-11-21T21:18:39.310Z",
+            "quantity": 4
+        }
+    ],
+    "price_in_cents": 5628.0,
+    "taxes": [
+        {
+            "id": 1,
+            "name": "State Sales Tax",
+            "rate": 8.52418034481334,
+            "created_at": "2024-11-21T21:18:38.657Z",
+            "updated_at": "2024-11-21T21:18:38.657Z"
+        },
+        {
+            "id": 2,
+            "name": "County Sales Tax",
+            "rate": 7.595269603047685,
+            "created_at": "2024-11-21T21:18:38.672Z",
+            "updated_at": "2024-11-21T21:18:38.672Z"
+        },
+        {
+            "id": 3,
+            "name": "Prepared Food Tax",
+            "rate": 7.65424679425208,
+            "created_at": "2024-11-21T21:18:38.683Z",
+            "updated_at": "2024-11-21T21:18:38.683Z"
+        }
+    ]
+}
+```
+
+### GET /orders
+
+```
+[
+    {
+        "id": 16,
+        "uuid": "6ea7982b-4d66-4a1d-a9ac-366a6b860d27",
+        "orderables": [
+            {
+                "id": 15,
+                "name": "Blacktop Equinox",
+                "price_in_cents": 1118.0,
+                "discount_rate": 10.357657246259773,
+                "created_at": "2024-11-21T21:18:39.369Z",
+                "updated_at": "2024-11-21T21:18:39.369Z",
+                "quantity": 7
+            },
+            {
+                "id": 19,
+                "name": "Winter Cake",
+                "price_in_cents": 2030.0,
+                "discount_rate": 11.689537986500108,
+                "created_at": "2024-11-21T21:18:39.462Z",
+                "updated_at": "2024-11-21T21:18:39.462Z",
+                "quantity": 10
+            },
+            {
+                "id": 3,
+                "name": "BIG Meal",
+                "discount_rate": 28.39290584737374,
+                "created_at": "2024-11-21T21:18:38.727Z",
+                "updated_at": "2024-11-21T21:18:38.727Z"
+            },
+            {
+                "id": 2,
+                "name": "Combo 05",
+                "discount_rate": 17.612198637534366,
+                "created_at": "2024-11-21T21:18:38.715Z",
+                "updated_at": "2024-11-21T21:18:38.715Z"
+            }
+        ]
+    }
+]
+```
 
 ### POST /orders
 
