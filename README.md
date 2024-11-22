@@ -1,4 +1,4 @@
-# CareCloud L1 Technical Interview Coffee Shop Application
+# CareCloud L1 Technical Interview Coffee Shop Application | Backend
 
 This README serves as a documentation for the decisions I've made regarding the
 structure of the application as well as what I've inferred from the document and thus coded.
@@ -9,8 +9,7 @@ With `asdf` being my version manager of choice, the Ruby version has been locked
 
 - Ruby 3.1.2
 - Ruby on Rails 7.0.8
-- TailwindCSS
-- React.js 18.0
+- SQLite
 
 ## Thoughts &amp; Decisions
 
@@ -53,6 +52,8 @@ it is not mentioned, I have concluded that it is not required.
 The usual steps for setting up a Rails project:
 
 ```sh
+$ bin/rails db:create
+$ bin/rails db:migrate
 $ bin/rails db:migrate
 
 # To get some data seeded
@@ -88,4 +89,68 @@ The application is designed to be managed in a single repo to make it easy to ru
 However, I would like to mention that this is not how I normally prefer to manage the codebase; I am of
 the thought that the Rails app should live in a separate repository and the the React app(s) should exist
 in their own repositories.
+
+## APIs
+
+I have included the Postman collection as well, but here are some example responses you can expect:
+
+### GET /items
+
+```
+{
+    "id": 1,
+    "name": "Kreb-Full-o Select",
+    "price_in_cents": 233.0,
+    "quantity": 14,
+    "taxes": [
+        {
+            "id": 1,
+            "name": "State Sales Tax",
+            "rate": 8.52418034481334,
+            "created_at": "2024-11-21T21:18:38.657Z",
+            "updated_at": "2024-11-21T21:18:38.657Z"
+        },
+        {
+            "id": 2,
+            "name": "County Sales Tax",
+            "rate": 7.595269603047685,
+            "created_at": "2024-11-21T21:18:38.672Z",
+            "updated_at": "2024-11-21T21:18:38.672Z"
+        },
+        {
+            "id": 3,
+            "name": "Prepared Food Tax",
+            "rate": 7.65424679425208,
+            "created_at": "2024-11-21T21:18:38.683Z",
+            "updated_at": "2024-11-21T21:18:38.683Z"
+        }
+    ]
+}
+```
+
+
+### GET /deals
+
+### POST /orders
+
+The request body would conform to this pattern:
+
+```
+{
+    "customer_name":"Test User",
+    "order_items_attributes":[
+        {
+            "orderable_id": 8,
+            "orderable_type": "Item",
+            "quantity": 1
+        }
+    ]
+}
+```
+
+And in response, you are going to get:
+
+```
+{ "message": "Order saved successfully" }
+```
 

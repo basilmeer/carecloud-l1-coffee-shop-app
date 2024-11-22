@@ -1,46 +1,44 @@
-# Getting Started with Create React App
+# CareCloud L1 Technical Interview Coffee Shop Application | Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) to save
+development time as the frontend part was optional, however, I felt it appropriate to have it set up to make
+it easier to test.
 
-## Available Scripts
+## Tech Stack
+- React 18.3
+- React Router 7
+- TypeScript 4.9
+- TailwindCSS 3.4
 
-In the project directory, you can run:
+## Thoughts &amp; Decisions
 
-### `npm start`
+### Using TypeScript
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The purpose behind using TS was to purely keep my own development as error free as possible while working across
+the frontend and the backend. It is arguable that I could have leveraged more what TS offers but for a project of 
+this scale, I have used whatever I felt necessary to keep my development smooth.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Tailwind
 
-### `npm test`
+While I do have a decent amount of experience with Bootstrap, I find Tailwind to be easier to prototype with.
+There didn't seem to be any hard requirement since the frontend portion was optional to begin with, thus I
+decided to take the liberty to use Tailwind.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Non-Responsive
 
-### `npm run build`
+My sole focus in the past 48 hours has been to make the application functional and testable. As such, I have opted
+to not make the design mobile-responsive.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Since the project was bootstrapped with Create React App, all you would really need to do is:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```sh
+$ cp .env.example .env
+$ npm i
+$ npm start
+```
 
-### `npm run eject`
+This should run the project at `http://localhost:3001` and expect the backend to be running at port 3000 (which has been
+configured for it by default).
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).

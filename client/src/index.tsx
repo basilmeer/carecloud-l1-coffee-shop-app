@@ -1,15 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from "react-router";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Confirmation from './pages/Confirmation';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<App />} />
+        <Route path="confirmation" element={<Confirmation />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

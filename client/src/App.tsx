@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router";
 import Products from './components/Products';
 import OrderSidebar from "./components/OrderSidebar";
 import { Order, OrderItem } from './lib/types';
@@ -7,7 +8,9 @@ import { apiRequest } from './lib/fetch';
 
 function App() {
   const [queuedItems, setQueuedItems] = useState<OrderItem[] | []>([]);
+  const [customerName, setCustomerName] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
+  const navigate = useNavigate();
 
   // For updating addition/removal of items (or quantities there of)
   const onItemSelect = (newOrderItem: OrderItem) => {
@@ -28,24 +31,30 @@ function App() {
   const onCheckout = async () => {
     setIsProcessing(true);
 
-    try {
-      await apiRequest<Order>("/orders", {
-        method: "POST",
-        body: JSON.stringify({
-          customer_name: "Test User",
-          order_items_attributes: queuedItems.map(orderItem => ({
-            orderable_id: orderItem.item.id,
-            orderable_type: "Item", // hard coding for now, to be swapped for Deal later
-            quantity: orderItem.quantity,
-          }))
-        })
-      });
+    // Note: Adding this timeout to showcase the form acting appropriately when processing
+    //       submission and to highlight what happens prior to the redirect since the actual submission
+    //       (being so barebones) is very quick
+    setTimeout(async () => {
+      try {
+        await apiRequest<Order>("/orders", {
+          method: "POST",
+          body: JSON.stringify({
+            customer_name: customerName,
+            order_items_attributes: queuedItems.map(orderItem => ({
+              orderable_id: orderItem.item.id,
+              orderable_type: "Item", // hard coding for now, to be swapped for Deal later
+              quantity: orderItem.quantity,
+            }))
+          })
+        });
 
-      setIsProcessing(false);
-    } catch (error) {
-      console.error(error);
-      setIsProcessing(false);
-    }
+        setIsProcessing(false);
+        navigate("/confirmation");
+      } catch (error) {
+        console.error(error);
+        setIsProcessing(false);
+      }
+    }, 2000);
   }
 
   return (
@@ -68,6 +77,18 @@ function App() {
             <div className="border-l h-[95dvh] px-4 pt-6 pb-10 fixed top-16 w-[24.8%] flex flex-col">
               <h1 className="text-3xl font-medium mb-8">Order</h1>
               <OrderSidebar orderItems={queuedItems} onItemUpdate={onItemSelect} />
+
+              <hr className="my-6" />
+
+              <label htmlFor="customer-name" className="text-sm uppercase font-medium">Customer Name</label>
+              <input
+                id="customer-name"
+                type="text"
+                className="w-full border rounded px-4 py-2" 
+                value={customerName as string}
+                onChange={(e) => setCustomerName(e.target.value)}
+              />
+
               <button
                 className="flex justify-center items-center w-full bg-black text-white font-bold text-xl rounded p-3 mt-5 shadow-sm transition duration-200 hover:text-zinc-300 disabled:bg-gray-400"
                 onClick={onCheckout}
