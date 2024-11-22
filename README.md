@@ -46,8 +46,7 @@ values in the database.
 ### Open APIs
 
 Since the point of the project is to create the structure and show that it works, I have opted to leave the
-APIs unprotected without any form of authentication, based on the task description, it is not mentioned. As
-it is not mentioned, I have concluded that it is not required.
+APIs unprotected since based on the task description, it is not explicitly required.
 
 ## Oversights
 
